@@ -45,6 +45,31 @@ tarsns create <ProjectName>
     └── <ProjectName>.conf
 ```
 
+### Tars协议服务
+---
+
+```
+tarsns create <ProjectName> --tars <AppName>
+```
+
+运行命令后会生成以下目录及文件：
+
+```
+<ProjectName>/
+    ├── <ProjectName>.conf
+    ├── app.js
+    ├── lib
+    │   ├── configLoader.js
+    │   ├── error.js
+    │   └── logger.js
+    ├── nodemon.json
+    ├── package.json
+    ├── proxy
+    ├── server.conf
+    └── tars
+        └── <ProjectName>.tars
+```
+
 ### 注意事项：
 * 项目名称：`<ProjectName>` 必须与 Tars 服务名称一致，手动修改`<ProjectName>` 会导致程序运行错误。
 * 程序端口：Tarsns 生成的项目默认端口为`3005`，可以在`package.json`的`config`字段中进行修改。
