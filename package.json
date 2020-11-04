@@ -1,0 +1,33 @@
+{
+  "name": "tars-node-server-generator",
+  "description": "Tars node server generator",
+  "version": "1.0.2",
+  "author": "Bellhe",
+  "keywords": [
+    "express",
+    "framework"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "6.1.0",
+    "fs-extra": "^9.0.1",
+    "mkdirp": "1.0.4",
+    "sorted-object": "2.0.1"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "tarsns": "./bin/TarsNodeServerGenerator.js"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "files": [
+    "LICENSE",
+    "bin/",
+    "boilerPlate/"
+  ],
+  "scripts": {
+    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "test-ci": "mocha --reporter spec --check-leaks test/"
+  }
+}

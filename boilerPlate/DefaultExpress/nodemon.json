@@ -1,0 +1,10 @@
+{
+    "restartable": "rs",
+    "verbose": true,
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "watch": ["bin", "lib", "routes", "views", "app.js", "server.js", "NodeServerBoilerPlate.conf"],
+    "ignore": [".git", ".vscode", "gulp", "node_modules", "public"],
+    "ext": "js ejs"
+}

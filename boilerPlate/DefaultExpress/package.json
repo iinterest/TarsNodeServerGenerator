@@ -1,0 +1,25 @@
+{
+  "name": "NodeServerBoilerPlate",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cross-env DEBUG=app:* NODE_ENV=local nodemon --config ./nodemon.json ./server.js"
+  },
+  "nodeAgent": {
+    "main": "./server.js"
+  },
+  "dependencies": {
+    "@tars/config": "^2.0.5",
+    "@tars/logs": "^2.1.1",
+    "@tars/utils": "^2.0.1",
+    "cookie-parser": "~1.4.5",
+    "debug": "~4.2.0",
+    "ejs": "~3.1.5",
+    "express": "~4.17.1",
+    "http-errors": "~1.8.0",
+    "morgan": "~1.10.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}
