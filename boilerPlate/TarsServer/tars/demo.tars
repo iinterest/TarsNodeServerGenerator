@@ -1,0 +1,20 @@
+module NodeServerBoilerAppName
+{
+    // TODO 定义入参出参结构体
+    struct IndexReq
+    {
+        0   optional    int         type;       // 入参
+    };
+
+    struct IndexRsp
+    {
+        0   optional    int         iRet;       // 返回码
+        1   optional    string      message;    // 返回消息
+    };
+
+    interface NodeServerBoilerPlate
+    {
+        // TODO 定义相关接口
+        int index(IndexReq stReq, out IndexRsp stRsp);
+    };
+};
