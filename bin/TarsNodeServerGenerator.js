@@ -27,19 +27,35 @@ const boilerPlateConfig = {
         ],
         emptyDir: [
             'public/',
+            'test/',
         ]
     },
     'TsExpress': {
-        
+
     },
     'TarsServer': {
-        
+        editFileList: [
+            'TarsConfig.conf',
+            'server.conf',
+            'nodemon.json',
+            'package.json',
+            'app.js',
+            'tars/demo.tars',
+        ],
+        copyList: [
+            'lib/',
+        ],
+        emptyDir: [
+            'proxy/',
+            'tars/'
+        ]
     }
 }
 
 program
     .version(version)
     .usage('<command> [options]')
+    .option('-t, --tars <AppName>', '生成 TarsServer')
 
 program
     .command('create <projectName>')
@@ -77,9 +93,16 @@ function createApplication(projectName) {
     console.log('1. 生成项目文件');
 
     let boilerPlateName = 'DefaultExpress';
+    let appName;
+    let serverObjName;
     
     if (program.ts) {
         boilerPlateName = 'TsExpress';
+    }
+    if (program.tars) {
+        boilerPlateName = 'TarsServer';
+        appName = program.tars;
+        serverObjName = projectName + 'Obj';
     }
     const boilerPlate = boilerPlateConfig[boilerPlateName];
 
@@ -94,22 +117,35 @@ function createApplication(projectName) {
     boilerPlate.emptyDir.forEach(async (item, index) => {
         let destPath = `./${projectName}/${item}`;
         await fs.emptyDir(destPath);
+
+        if (boilerPlate.emptyDir.length - index - 1 === 0) {
+            doEditFileList();
+        }
     });
 
-    boilerPlate.editFileList.forEach(item => {
-        let sourcePath = path.join(__dirname, '..', `boilerPlate/${boilerPlateName}/`, item);
-        let destPath = `./${projectName}/${item}`;
-        if (destPath.indexOf('.conf') !== -1) {
-            destPath = `./${projectName}/${projectName}.conf`;
-        }
-        try {
-            let file = fs.readFileSync(sourcePath, 'utf-8');
-            file = file.replace(/NodeServerBoilerPlate/ig, projectName).replace(/TafnsGeneratorVersion/ig, version);
-            writeFile(destPath, file);
-        } catch (error) {
-            console.log('editFile Error: ', error);
-        }
-    });
+    function doEditFileList() {
+        boilerPlate.editFileList.forEach(item => {
+            let sourcePath = path.join(__dirname, '..', `boilerPlate/${boilerPlateName}/`, item);
+            let destPath = `./${projectName}/${item}`;
+            if (destPath.indexOf('TarsConfig.conf') !== -1) {
+                destPath = `./${projectName}/${projectName}.conf`;
+            }
+            if (destPath.indexOf('.tars') !== -1) {
+                destPath = `./${projectName}/tars/${projectName}.tars`;
+            }
+            try {
+                let file = fs.readFileSync(sourcePath, 'utf-8');
+                file = file.replace(/NodeServerBoilerPlate/ig, projectName).replace(/TafnsGeneratorVersion/ig, version);
+                if (appName) {
+                    file = file.replace(/NodeServerBoilerAppName/ig, appName).replace(/NodeServerBoilerObjName/ig, serverObjName);
+                }
+                writeFile(destPath, file);
+            } catch (error) {
+                console.log('editFile Error: ', error);
+            }
+        });
+    }
+    
 
     (async function() {
         const sourcePath = path.join(__dirname, '..', `boilerPlate/${boilerPlateName}/gitignore.txt`);
@@ -136,6 +172,10 @@ function createApplication(projectName) {
         case 'TsExpress':
             console.log('tsc -w');
             console.log('npm start');
+            break;
+        case 'TarsServer': 
+            console.log(`cd tars && tars2node ${projectName}.tars && tars2node ${projectName}.tars --server` );
+            console.log('cd ../ && npm start');
             break;
         default:
             console.log('npm start');
