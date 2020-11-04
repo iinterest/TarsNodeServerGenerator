@@ -1,11 +1,10 @@
-
 const fs = require('fs');
 const tarsConfig = require('@tars/config');
 const tarsUtils = require('@tars/utils');
 
 const configLoader = (filename, configFormat) => {
     return new Promise((resolve, reject) => {
-        if (process.env.TAF_CONFIG) {
+        if (process.env.TARS_CONFIG) {
             let configHelper = new tarsConfig();
             configHelper.loadConfig(filename, configFormat).then(data => {
                 let iData = parseConfig(data, configFormat);
