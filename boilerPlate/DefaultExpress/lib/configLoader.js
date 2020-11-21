@@ -5,6 +5,9 @@ const tarsUtils = require('@tars/utils');
 const configLoader = (filename, configFormat) => {
     return new Promise((resolve, reject) => {
         if (process.env.TARS_CONFIG) {
+            if (configFormat === 'c') {
+                configFormat = { format: 'C' };
+            }
             let configHelper = new tarsConfig();
             configHelper.loadConfig(filename, configFormat).then(data => {
                 let iData = parseConfig(data, configFormat);
