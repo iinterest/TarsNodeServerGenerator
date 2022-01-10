@@ -44,6 +44,9 @@ tarsns create <ProjectName>
     ├── server.js
     └── <ProjectName>.conf
 ```
+### 注意事项：
+* 项目名称：`<ProjectName>` 必须与 Tars 服务名称一致，手动修改`<ProjectName>` 会导致程序运行错误。
+* 程序端口：Tarsns 生成的项目默认端口为`4000`，可以在`package.json`的`config.port`字段中进行修改。
 
 ### Tars协议服务
 ---
@@ -71,8 +74,8 @@ tarsns create <ProjectName> --tars <AppName>
 ```
 
 ### 注意事项：
-* 项目名称：`<ProjectName>` 必须与 Tars 服务名称一致，手动修改`<ProjectName>` 会导致程序运行错误。
-* 程序端口：Tarsns 生成的项目默认端口为`3005`，可以在`package.json`的`config`字段中进行修改。
+* 项目名称：`<AppName>`为应用名称，`<ProjectName>` 为服务名称，必须与 Tars 应用和服务名称一致，手动修改`<ProjectName>` 会导致程序运行错误。
+* 程序端口：Tarsns 生成的项目默认端口为`14009`，可以在`server.conf`文件中进行修改。
 
 ## 四、其它问题
 

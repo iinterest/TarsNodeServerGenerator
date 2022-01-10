@@ -1,7 +1,7 @@
 {
   "name": "tars-node-server-generator",
   "description": "Tars node server generator",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "author": "Bellhe",
   "keywords": [
     "express",
