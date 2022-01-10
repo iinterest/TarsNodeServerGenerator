@@ -1,8 +1,11 @@
 {
     "name": "NodeServerBoilerPlate",
     "version": "1.0.0",
-    "private": "true",
+    "private": true,
     "main": "app.js",
+    "config": {
+        "TZ": "Asia/Shanghai"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "cross-env DEBUG=app:* NODE_ENV=local nodemon --config ./nodemon.json ./app.js"
@@ -11,14 +14,14 @@
         "main": "./app.js"
     },
     "keywords": [
-        "uniqueid"
+        "tars"
     ],
     "dependencies": {
         "@tars/config": "^2.0.5",
         "@tars/logs": "^2.1.1",
         "@tars/rpc": "^2.0.14",
         "@tars/stream": "^2.0.3",
-        "@tars/utils": "^2.0.1",
+        "@tars/utils": "^2.1.0",
         "debug": "~4.2.0"
     },
     "devDependencies": {

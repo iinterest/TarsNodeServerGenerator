@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "config": {
+        "TZ": "",
         "port": 4000
     },
     "scripts": {
@@ -14,13 +15,13 @@
     "dependencies": {
         "@tars/config": "^2.0.5",
         "@tars/logs": "^2.1.1",
-        "@tars/utils": "^2.0.1",
-        "cookie-parser": "~1.4.5",
-        "debug": "~4.3.1",
+        "@tars/utils": "^2.1.0",
+        "cookie-parser": "~1.4.6",
+        "debug": "~4.3.3",
         "ejs": "~3.1.6",
-        "express": "~4.17.1",
-        "helmet": "^4.4.1",
-        "http-errors": "~1.8.0",
+        "express": "~4.17.2",
+        "helmet": "^5.0.1",
+        "http-errors": "~2.0.0",
         "morgan": "~1.10.0"
     },
     "devDependencies": {
