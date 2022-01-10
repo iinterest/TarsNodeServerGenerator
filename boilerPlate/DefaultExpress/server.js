@@ -1,5 +1,6 @@
 const http = require('http')
 const configLoader = require('./lib/configLoader')
+process.env.TZ = process.env.npm_package_config_TZ || 'Asia/Shanghai'
 
 configLoader('NodeServerBoilerPlate.conf', 'c').then(config => {
     const app = require('./app')
@@ -10,7 +11,7 @@ configLoader('NodeServerBoilerPlate.conf', 'c').then(config => {
     app.set('ip', ip)
 
     console.log('=====================================================================')
-    console.log('server start: http://' + ip + ':' + port)
+    console.log('server startup: http://' + ip + ':' + port)
     console.log('server get config: ', config)
 
     /**
@@ -42,7 +43,7 @@ configLoader('NodeServerBoilerPlate.conf', 'c').then(config => {
      * Event listener for HTTP server "error" event.
      */
     function onError(error) {
-        console.log('server start error')
+        console.log('server startup error')
         console.log('=====================================================================')
         if (error.syscall !== 'listen') {
             throw error
@@ -72,7 +73,7 @@ configLoader('NodeServerBoilerPlate.conf', 'c').then(config => {
         let bind = typeof addr === 'string'
             ? 'pipe ' + addr
             : 'port ' + addr.port
-        console.log('server start success')
+        console.log('server startup successful')
         console.log('=====================================================================')
     }
 }, (err) => {
